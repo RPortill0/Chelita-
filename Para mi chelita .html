@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Niña Preciosa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        body {
+            margin: 0;
+            overflow: hidden; /* Prevent scrollbars from animations */
+            font-family: 'Pacifico', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to top right, #FFD1DC, #FFB6C1); /* Warm pink gradient */
+            color: #8B0000; /* Dark red for text */
+            text-align: center;
+            position: relative;
+            box-sizing: border-box; /* Include padding in element's total width and height */
+            padding: 20px; /* Add some padding for smaller screens */
+        }
+
+        /* Initial Message */
+        #initial-message {
+            font-size: 2.5em; /* Adjusted for responsiveness */
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            white-space: nowrap; /* Prevent line breaks */
+            padding: 10px; /* Add padding for touch targets */
+        }
+
+        /* Main Content */
+        #main-content {
+            font-size: 1.2em; /* Adjusted for responsiveness */
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            padding: 20px;
+            max-width: 90%; /* Max width for smaller screens */
+            width: 800px; /* Max width for larger screens */
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly less transparent */
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 5;
+            line-height: 1.6; /* Improved readability */
+        }
+
+        /* Audio Message */
+        #audio-message {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly darker */
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 0.8em; /* Smaller for less obtrusiveness */
+            cursor: pointer;
+            z-index: 100;
+            white-space: nowrap;
+        }
+
+        /* --- Animations --- */
+
+        /* Heart Animation */
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            background-color: rgba(255, 105, 180, 0.7); /* Lighter pink, slightly transparent */
+            animation: floatHeart 8s ease-out infinite; /* Shorter duration, smoother ease-out */
+            pointer-events: none;
+            border-radius: 50%;
+            transform: rotate(45deg);
+            transform-origin: 50% 50%;
+            will-change: transform, opacity; /* Optimize for animation performance */
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: inherit;
+            border-radius: 50%;
+        }
+
+        .heart::before { top: -50%; left: 0; }
+        .heart::after { top: 0; left: 50%; }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(0) rotate(45deg) scale(0.3); opacity: 0; }
+            30% { opacity: 0.8; }
+            100% { transform: translateY(-100vh) rotate(45deg) scale(1); opacity: 0; } /* Use vh for vertical movement */
+        }
+
+        /* Flower Animation */
+        .flower {
+            position: absolute;
+            opacity: 0;
+            animation: floatFlower 12s linear infinite; /* Shorter duration */
+            pointer-events: none;
+            will-change: transform, opacity; /* Optimize for animation performance */
+        }
+
+        @keyframes floatFlower {
+            0% { transform: translateY(0) rotate(0deg) scale(0.6); opacity: 0; }
+            20% { opacity: 0.7; }
+            80% { opacity: 0.7; }
+            100% { transform: translateY(-100vh) rotate(720deg) scale(1.1); opacity: 0; } /* Use vh for vertical movement */
+        }
+
+        /* --- Media Queries for Responsiveness --- */
+
+        /* For screens smaller than 768px (e.g., phones) */
+        @media (max-width: 768px) {
+            #initial-message {
+                font-size: 2em;
+            }
+            #main-content {
+                font-size: 1em;
+                padding: 15px;
+            }
+            .heart {
+                width: 15px;
+                height: 15px;
+                animation-duration: 6s; /* Faster for smaller screens */
+            }
+            .flower {
+                width: 40px;
+                height: 40px;
+                animation-duration: 9s; /* Faster for smaller screens */
+            }
+        }
+
+        /* For screens smaller than 480px (e.g., small phones) */
+        @media (max-width: 480px) {
+            #initial-message {
+                font-size: 1.5em;
+            }
+            #main-content {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+            .heart {
+                width: 10px;
+                height: 10px;
+                animation-duration: 5s;
+            }
+            .flower {
+                width: 30px;
+                height: 30px;
+                animation-duration: 7s;
+            }
+            #audio-message {
+                font-size: 0.7em;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="initial-message">
+        Buenos días mi niña preciosa
+    </div>
+
+    <div id="main-content">
+        Siento que mi amor por vos, cada día va más allá, mis ganas de estar con vos son inmensas, me pregunto como hubiese sido mi vida si no te hubiese conocido, me lleno de felicidad con tan solo pensarte, te amo demasiado como no tenes idea, me gusta todo de vos y realmente disfruto de tu compañía. Cada día que pasamos juntos, mi amor aumenta, francamente me gustaría pasar el resto de mi vida vos, me siento tan afortunado de poder decirles a todos que alguien tan linda como vos es mi novia, la chica que siempre soñé.
+    </div>
+
+    <audio id="background-music" loop>
+        <source src="Je te laisserai des mots.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <div id="audio-message">Tocamé :)</div>
+
+    <script>
+        const initialMessage = document.getElementById('initial-message');
+        const mainContent = document.getElementById('main-content');
+        const backgroundMusic = document.getElementById('background-music');
+        const audioMessage = document.getElementById('audio-message');
+
+        // Function to play music
+        function playMusic() {
+            backgroundMusic.play().then(() => {
+                console.log("Música reproduciéndose");
+                audioMessage.style.display = 'none'; // Hide message once playing
+            }).catch(error => {
+                console.warn("La reproducción de música fue bloqueada:", error);
+                audioMessage.textContent = "Toca para reproducir la música (tu navegador la bloqueó)";
+            });
+        }
+
+        // Listener for music playback on click
+        audioMessage.addEventListener('click', playMusic);
+
+        // Transition logic
+        setTimeout(() => {
+            initialMessage.style.opacity = '0';
+            setTimeout(() => {
+                initialMessage.style.display = 'none';
+                mainContent.style.opacity = '1';
+                playMusic(); // Attempt to play music after transition
+            }, 1000); // Allow 1s for initial message to fade out
+        }, 10000); // 10 seconds for initial message display
+
+        // Generate random hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            const size = Math.random() * 20 + 10; // 10-30px
+            heart.style.width = `${size}px`;
+            heart.style.height = `${size}px`;
+            heart.style.left = `${Math.random() * 100}vw`; // Random horizontal position
+            heart.style.animationDuration = `${Math.random() * 4 + 4}s`; // 4-8s duration
+            heart.style.animationDelay = `${Math.random() * 3}s`; // 0-3s delay
+            document.body.appendChild(heart);
+
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
+
+        // Generate random flowers (requires images)
+        const flowerImages = [
+            'flor1.png', // Replace with your flower image filenames
+            'flor1.png',
+            'flor1.png'
+            // Add more if you have them
+        ];
+
+        function createFlower() {
+            if (flowerImages.length === 0) return; // Don't create flowers if no images are provided
+
+            const flower = document.createElement('img');
+            flower.classList.add('flower');
+            flower.src = flowerImages[Math.floor(Math.random() * flowerImages.length)];
+            const size = Math.random() * 40 + 30; // 30-70px
+            flower.style.width = `${size}px`;
+            flower.style.height = `${size}px`;
+            flower.style.left = `${Math.random() * 100}vw`;
+            flower.style.animationDuration = `${Math.random() * 6 + 6}s`; // 6-12s duration
+            flower.style.animationDelay = `${Math.random() * 4}s`; // 0-4s delay
+            document.body.appendChild(flower);
+
+            flower.addEventListener('animationend', () => {
+                flower.remove();
+            });
+        }
+
+        // Create hearts and flowers at intervals
+        setInterval(createHeart, 400); // Create a heart every 400ms
+        setInterval(createFlower, 700); // Create a flower every 700ms
+    </script>
+</body>
+</html>
